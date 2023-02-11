@@ -7,7 +7,7 @@ const generateMarkdown = require("./utils/generateMarkdown");
 const questions = [
   {
     type: "input",
-    message: "What is your GitHub profile? (https://github.com/{profile})",
+    message: "What is your GitHub username?",
     name: "github",
     validate: validateInput,
   },
@@ -43,7 +43,7 @@ const questions = [
   },
   {
     type: "input",
-    message: "Add a screenshot? (complete the path to screenshot: https://github.com/user/{path to screenshot})",
+    message: "Add a screenshot? (complete the path to screenshot: https://github.com/username/{path to screenshot})",
     name: "screenshot",
   },
   {
@@ -81,6 +81,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 async function init() {
   const responses = await inquire();
+  responses.github = `https://github.com/${responses.github}/`;
   const markdown = generateMarkdown(responses);
   writeToFile("README.md", markdown);
 }

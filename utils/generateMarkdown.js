@@ -8,12 +8,11 @@ function renderLicenseBadge(license) {
     gpl: "https://img.shields.io/badge/License-GPLv3-blue.svg",
     agpl: "https://img.shields.io/badge/License-AGPL_v3-blue.svg",
   };
-  return `[![License: ${licenses[license]}](${licenses[license.toLowerCase()]})`;
+  return `[![License](${licenses[license.toLowerCase()]})]`;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string - did not implement this as the only place the function is called in the event there is actually a license.
-// MIT", "Apache", "MPL", "GPL", "AGPL
 function renderLicenseLink(license) {
   const licenses = {
     mit: "https://opensource.org/licenses/MIT",
@@ -29,46 +28,88 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (!license) return "";
-  return `${renderLicenseBadge(license)}${renderLicenseLink(license)}`;
+  return `## License
+  
+  This project is licensed under the ${license} license. See [here]${renderLicenseLink(license)} for more info.`;
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  const license = renderLicenseSection(data.license);
-  return `# ${data.title}
-${license ? license : ""}
+  let markdown = "";
+  let title = `# ${data.title}
+  `;
 
-## Description
-${data.description}
+  // if there is a license, add the badge and link here
+  if (data.license) {
+  title += `${renderLicenseBadge(data.license)}${renderLicenseLink(data.license)}
+  
+  `;
+  } else {
+  // if no license, add an extra line break
+  title += `
+  
+  `;
+  }
 
-## Table of Contents
+  let tableOfContents = `## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Testing](#testing)
+  - [Questions](#questions)`;
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Testing](#testing)
-- [Questions](#questions)
-- [License](#license)
+  if (data.license) {
+    tableOfContents += `
+  - [License](#license)
+  
+  `;
+  } else {
+    // if no license, add extra line breaks
+    tableOfContents += `
+  
+  `;
+  }
 
-## Installation
-${data.install}
+  const installation = `## Installation
+  ${data.install}
+  
+  `;
 
-## Usage
-${data.usage}${data.screenshot ? "\n\n```md\n![screenshot](" + data.github + data.screenshot + ")" : ""}
+  let usage = `## Usage
+  ${data.usage}
+  
+  `;
 
-## Contributing
-${data.contribute}
+  // if (data.screenshot) {
+  //   usage += `<p align="center">
+  //   <img src="${data.github}${data.screenshot}">
+  //   </p>
 
-## Testing
-${data.tests}
+  //   `;
+  // }
 
-## Questions
-View my other projects at my [GitHub Profile](${data.githib})
-For any questions, I can be reached at [${data.email}](${data.email})
+  const contributing = `## Contributing
+  ${data.contribute}
+  
+  `;
 
-# License
-${data.license ? "Licensed under the [" + data.license + "](" + renderLicenseLink(data.license) + ")" : "No license applies to this project"}
-`;
+  const testing = `## Testing
+  ${data.tests}
+  
+  `;
+
+  const questions = `## Questions
+  View my other projects at [${data.github}](${data.github}).
+
+  If you would lke to contact me, I can be reached at [${data.email}](mailto:${data.email}).
+  
+  `;
+
+  const license = data.license ? renderLicenseSection(data.license) : "";
+
+  markdown = title + tableOfContents + installation + usage + contributing + testing + questions + license;
+
+  return markdown;
 }
 
 module.exports = generateMarkdown;
