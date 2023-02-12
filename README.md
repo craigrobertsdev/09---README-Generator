@@ -17,7 +17,7 @@
   `npm install`
   
   ## Usage
-  The project can be run by entering `node index` in the command line from the application's assets/README/ folder, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application.<br><br>A video demo for this application can be found [here](https://drive.google.com/file/d/1ZAS_jlkTZGBhzLhFeJJbjvfthNnJuVS9/view)
+  The project can be run by entering `node index` in the command line from the application's assets/README/ folder, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application.<br><br>A video demo for this application can be found [here](https://drive.google.com/file/d/1ZAS_jlkTZGBhzLhFeJJbjvfthNnJuVS9/view).
   
   <p align="center">
   <img src="https://github.com/craigrobertsdev/README-Generator/blob/main/assets/images/screenshot.jpg">
