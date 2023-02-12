@@ -2,6 +2,7 @@
   [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
   ## Table of Contents
+  - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)
@@ -9,11 +10,14 @@
   - [Questions](#questions)
   - [License](#license)
   
+  ## Description
+  A command-line tool that accepts user input to prompts and generates a professional looking README file using the Markdown language.
+  
   ## Installation
-  npm install
+  `npm install`
   
   ## Usage
-  The project can be run by entering `node index` in the command line from the application's root folder, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application.
+  The project can be run by entering `node index` in the command line from the application's assets/README/ folder, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application.
   
   <p align="center">
   <img src="https://github.com/craigrobertsdev/README-Generator/blob/main/assets/images/screenshot.jpg">

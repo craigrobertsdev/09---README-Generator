@@ -1,7 +1,5 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const markdown = require("./utils/generateMarkdown");
 const generateMarkdown = require("./utils/generateMarkdown");
 
 const questions = [
@@ -66,29 +64,31 @@ const questions = [
   },
 ];
 
+// Runs through the list of questions using the Inquirer module
+function inquire() {
+  return inquirer.prompt(questions);
+}
+
+// Confirms that the user has entered the required information
 function validateInput(answer) {
   if (answer) return true;
   return "Please enter an input";
 }
 
-// TODO: Create a function to write README file
+// Writes the generated Markdown to the /assets/README folder
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (error) => {
     error ? console.log("There was an error: " + error) : console.log("Success");
   });
 }
 
-// TODO: Create a function to initialize app
+// Waits for user input, converts username to proper GitHub URL, generates Markdown then writes README file.
 async function init() {
   const responses = await inquire();
   responses.github = `https://github.com/${responses.github}/`;
   const markdown = generateMarkdown(responses);
-  writeToFile("README.md", markdown);
+  writeToFile("./assets/ReadMe/README.md", markdown);
 }
 
 // Function call to initialize app
 init();
-
-function inquire() {
-  return inquirer.prompt(questions);
-}

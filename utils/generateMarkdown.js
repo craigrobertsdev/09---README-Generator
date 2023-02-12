@@ -54,6 +54,11 @@ function generateMarkdown(data) {
   
   let tableOfContents = generateToC(data);
 
+  const description = `## Description
+  ${data.description}
+  
+  `;
+
   const installation = `## Installation
   ${data.install}
   
@@ -91,13 +96,14 @@ function generateMarkdown(data) {
 
   const license = data.license ? renderLicenseSection(data.license) : "";
 
-  return title + tableOfContents + installation + usage + contributing + testing + questions + license;
+  return title + tableOfContents + description + installation + usage + contributing + testing + questions + license;
 
 }
 
 function generateToC(data) {
   let toc =
   `## Table of Contents
+  - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)
