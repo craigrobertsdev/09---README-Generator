@@ -1,6 +1,7 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string - did not implement this as the only place the function is called is from renderLicenseSection in the event there is actually a license.
+// If there is no license, return an empty string
 function renderLicenseBadge(license) {
+  if (license === "None") return "";
   const licenses = {
     mit: "https://img.shields.io/badge/License-MIT-yellow.svg",
     apache: "https://img.shields.io/badge/License-Apache_2.0-blue.svg",
@@ -12,8 +13,9 @@ function renderLicenseBadge(license) {
 }
 
 // TODO: Create a function that returns the license link
-// If there is no license, return an empty string - did not implement this as the only place the function is called in the event there is actually a license.
+// If there is no license, return an empty string
 function renderLicenseLink(license) {
+  if (license === "None") return "";
   const licenses = {
     mit: "https://opensource.org/licenses/MIT",
     apache: "https://opensource.org/licenses/Apache-2.0",
@@ -27,7 +29,7 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if (!license) return "";
+  if (license === "None") return "";
   return `## License
   
   This project is licensed under the ${license} license. See [here]${renderLicenseLink(license)} for more info.`;
@@ -35,7 +37,7 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  let markdown = "";
+
   let title = `# ${data.title}
   `;
 
@@ -50,25 +52,8 @@ function generateMarkdown(data) {
   
   `;
   }
-
-  let tableOfContents = `## Table of Contents
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
-  - [Testing](#testing)
-  - [Questions](#questions)`;
-
-  if (data.license) {
-    tableOfContents += `
-  - [License](#license)
   
-  `;
-  } else {
-    // if no license, add extra line breaks
-    tableOfContents += `
-  
-  `;
-  }
+  let tableOfContents = generateToC(data);
 
   const installation = `## Installation
   ${data.install}
@@ -107,9 +92,41 @@ function generateMarkdown(data) {
 
   const license = data.license ? renderLicenseSection(data.license) : "";
 
-  markdown = title + tableOfContents + installation + usage + contributing + testing + questions + license;
+  return title + tableOfContents + installation + usage + contributing + testing + questions + license;
 
-  return markdown;
+}
+
+function generateToC(data) {
+  let toc =
+  `## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  `;
+
+  // if there are tests - add the ToC link 
+  if (data.tests) {
+    toc += `- [Testing](#testing)
+  `
+  }
+
+  // always add questions section
+  toc += `- [Questions](#questions)
+  `;
+
+  // deal with license here if applicable
+  if (data.license) {
+    toc += `- [License](#license)
+  
+  `;
+  } else {
+    // if no license, add extra line breaks
+    toc += `
+  
+  `;
+  }
+
+  return toc;
 }
 
 module.exports = generateMarkdown;
