@@ -13,7 +13,7 @@
   npm install
   
   ## Usage
-  The project can be run by entering `node index` in the command, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application
+  The project can be run by entering `node index` in the command, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application.
   
   <p align="center">
   <img src="https://github.com/craigrobertsdev/README-Generator/blob/main/assets/images/screenshot.jpg">
@@ -23,7 +23,7 @@
   To contribute, fork the repo, make changes to the code and submit a pull request for review. Otherwise, feel free to fork and modify to your heart's content.
   
   ## Testing
-  There are no tests for this project
+  There are no tests for this project.
   
   ## Questions
   View my other projects at [https://github.com/craigrobertsdev/](https://github.com/craigrobertsdev/).
