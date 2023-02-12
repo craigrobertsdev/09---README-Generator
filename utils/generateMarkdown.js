@@ -1,5 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// Returns the link to license badge based on user selection
 function renderLicenseBadge(license) {
   if (license === "None") return "";
   const licenses = {
@@ -12,8 +11,7 @@ function renderLicenseBadge(license) {
   return `[![License](${licenses[license.toLowerCase()]})]`;
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// returns the link to the selected license web page
 function renderLicenseLink(license) {
   if (license === "None") return "";
   const licenses = {
@@ -26,8 +24,7 @@ function renderLicenseLink(license) {
   return `(${licenses[license.toLowerCase()]})`;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// returns either nothing if no license is selected, or the complete markdown for the license section of the readme.
 function renderLicenseSection(license) {
   if (license === "None") return "";
   return `## License
@@ -35,7 +32,9 @@ function renderLicenseSection(license) {
   This project is licensed under the ${license} license. See [here]${renderLicenseLink(license)} for more info.`;
 }
 
-// TODO: Create a function to generate markdown for README
+// Generates entire markdown for README.
+// data is an object containing all responses to the question prompts from running node index
+// each section is responsible for creating the space below it to the next section.
 function generateMarkdown(data) {
 
   let title = `# ${data.title}
@@ -65,13 +64,13 @@ function generateMarkdown(data) {
   
   `;
 
-  // if (data.screenshot) {
-  //   usage += `<p align="center">
-  //   <img src="${data.github}${data.screenshot}">
-  //   </p>
+  if (data.screenshot) {
+  usage += `<p align="center">
+  <img src="${data.github}${data.screenshot}">
+  </p>
 
-  //   `;
-  // }
+  `;
+  }
 
   const contributing = `## Contributing
   ${data.contribute}
