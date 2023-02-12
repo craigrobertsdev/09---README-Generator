@@ -16,7 +16,7 @@
   The project can be run by entering `node index` in the command, and answering the questions based on the prompts.<br><br>The README.md file will be generated in the root folder of the application
   
   <p align="center">
-  <img src="https://github.com/craigrobertsdev/assets/images/screenshot.jpg">
+  <img src="https://github.com/craigrobertsdev/README-Generator/blob/main/assets/images/screenshot.jpg">
   </p>
 
   ## Contributing
